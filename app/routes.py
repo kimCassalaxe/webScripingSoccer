@@ -15,11 +15,13 @@ def index():
 
 @main.route('/api/ligas')
 def ligas():
-  return jsonify({"message": "ligas ","date":Dados["ligas"]})
+  dados = Dados['ligas']
+  return jsonify({"message": "ligas ","date":dados})
 
 @main.route('/api/ligas/la_liga')
 def la_liga():
-  return jsonify({"message": "la_liga 🚀"})
+  dados = LALigaAPIClient.get_classificacao()
+  return jsonify({"message": "la ligas ","date":dados})
 
 @main.route('/api/ligas/la_liga/tabel')
 def la_liga_tabela():
@@ -42,12 +44,15 @@ def premier_league():
 # rota para obter os jogos da premier league de uma semana específica
 # ex: /api/ligas/premier_league/matchsweek/18/12/2025
 def premier_league_matches(week, month, year):
+
+
+  
   matchs = get_matchs_of_week(week, month, year)
 
   return jsonify({"message": "jogos da premier_league "if matchs else "nenhum jogo encontrado","date":matchs})
 # url = str(f"https://www.premierleague.com/en/matches?competition=8&season={year}&matchweek={week}&month={month}")
 
-@main.route('/api/ligas/premier_league/statistic')
+@main.route(' ')
 # rota para obter as estatisticas da premier league
 def premier_league_statistics():
   dados = get_statistic()

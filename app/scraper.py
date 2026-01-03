@@ -83,15 +83,18 @@ def get_statistic():
   )
   driver = webdriver.Firefox(options=options)
   try:
+    print("estou aqui 0")
     dados = []
     driver.get(url)
     # tabela recebe os cards de estatistica EX:gols,assists,cleanSheet
     tabelas = WebDriverWait(driver, 15).until(
     EC.presence_of_all_elements_located((By.CSS_SELECTOR, "div.col-12")))[:2]
     #linhas recebe todas as linhas da tabela de classificação
+    print("estou aqui 1")
     categorias = tabelas[0].find_elements(By.CSS_SELECTOR,"span.stats-leaderboard__header")
     
     for categoria in categorias:
+      print("estou aqui 2")
       # day_matchs recebe a data do jogos
       titulo = categoria.find_element(By.CSS_SELECTOR,"span.match-list__day-date")
       # partidas recebe todas as partidas do day_matchs
