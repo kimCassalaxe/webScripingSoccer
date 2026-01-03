@@ -89,15 +89,9 @@ def get_statistic():
     tabelas = WebDriverWait(driver, 15).until(
     EC.presence_of_all_elements_located((By.CSS_SELECTOR, "div.col-12")))[:2]
     #linhas recebe todas as linhas da tabela de classificação
-    print("#"*50)
-    print(tabelas[0].get_attribute("outerHTML"))
-    print("_"*50)
     categorias = tabelas[0].find_elements(By.CSS_SELECTOR,"span.stats-leaderboard__header")
     
-    print(len(categorias))
-    print("#"*50)
     for categoria in categorias:
-      print(categoria.get_attribute("outerHTML"))
       # day_matchs recebe a data do jogos
       titulo = categoria.find_element(By.CSS_SELECTOR,"span.match-list__day-date")
       # partidas recebe todas as partidas do day_matchs
@@ -105,6 +99,7 @@ def get_statistic():
       
       lista_jogadores = []
       for linha in partidas:
+        print("estou aqui")
         #pegar os nomes das equipes do jogo
         pos = linha.find_element(By.CSS_SELECTOR,"span.stats-leaderboard__pos")
         #pegar os logos das equipes do jogo
